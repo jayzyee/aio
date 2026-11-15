@@ -87,6 +87,32 @@ class AioLanguageTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "unknown noun"):
             self.language.speak(message)
 
+    def test_surface_check_rejects_question_without_auxiliary(self) -> None:
+        case = next(case for case in self.cases if case["id"] == "present_question")
+        message = message_from_dict(case["frame"])
+
+        checks = surface_constraints(
+            message,
+            "The careful mechanic inspect the bridge?",
+            self.language,
+        )
+
+        self.assertFalse(checks["canonical_frame_match"])
+        self.assertFalse(all(checks.values()))
+
+    def test_surface_check_rejects_unlicensed_negation(self) -> None:
+        case = next(case for case in self.cases if case["id"] == "present_transitive")
+        message = message_from_dict(case["frame"])
+
+        checks = surface_constraints(
+            message,
+            "The quiet courier carries not a blue lantern.",
+            self.language,
+        )
+
+        self.assertFalse(checks["canonical_frame_match"])
+        self.assertFalse(all(checks.values()))
+
 
 if __name__ == "__main__":
     unittest.main()

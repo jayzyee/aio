@@ -300,6 +300,76 @@ def surface_constraints(
     words = TOKEN_PATTERN.findall(utterance.casefold())
     word_set = set(words)
     clause = message.clause
+
+    def noun_tokens(entity: Entity) -> list[str]:
+        return TOKEN_PATTERN.findall(language._noun_phrase(entity).casefold())
+
+    def append_predicate_tokens(
+        target: list[str], current: Clause, verb_form: str
+    ) -> None:
+        target.extend(
+            TOKEN_PATTERN.findall(
+                language._verb(current.verb, verb_form).casefold()
+            )
+        )
+        if current.object is not None:
+            target.extend(noun_tokens(current.object))
+        if current.adverb is not None:
+            target.extend(
+                TOKEN_PATTERN.findall(
+                    language._word("adverbs", current.adverb).casefold()
+                )
+            )
+
+    expected_tokens: list[str] = []
+    if message.act == "request":
+        expected_tokens.append("please")
+        append_predicate_tokens(expected_tokens, clause, "base")
+    elif message.act == "question":
+        if message.question_word:
+            expected_tokens.append(message.question_word)
+        if message.modality:
+            expected_tokens.append(message.modality)
+            expected_tokens.extend(noun_tokens(clause.subject))
+            if clause.negative:
+                expected_tokens.append("not")
+        else:
+            expected_tokens.append(language._do_auxiliary(clause))
+            expected_tokens.extend(noun_tokens(clause.subject))
+            if clause.negative:
+                expected_tokens.append("not")
+        append_predicate_tokens(expected_tokens, clause, "base")
+    else:
+        expected_tokens.extend(noun_tokens(clause.subject))
+        if message.modality:
+            expected_tokens.append(message.modality)
+            if clause.negative:
+                expected_tokens.append("not")
+            form = "base"
+        elif clause.negative:
+            expected_tokens.extend([language._do_auxiliary(clause), "not"])
+            form = "base"
+        else:
+            form = "past" if clause.tense == "past" else (
+                "third" if clause.subject.number == "singular" else "base"
+            )
+        append_predicate_tokens(expected_tokens, clause, form)
+        if message.cause:
+            expected_tokens.append("because")
+            expected_tokens.extend(noun_tokens(message.cause.subject))
+            if message.cause.negative:
+                expected_tokens.extend(
+                    [language._do_auxiliary(message.cause), "not"]
+                )
+                cause_form = "base"
+            else:
+                cause_form = "past" if message.cause.tense == "past" else (
+                    "third"
+                    if message.cause.subject.number == "singular"
+                    else "base"
+                )
+            append_predicate_tokens(expected_tokens, message.cause, cause_form)
+
     role_order = True
     subject = clause.subject
     obj = clause.object
@@ -404,6 +474,7 @@ def surface_constraints(
         "causal_relation": relation,
         "past_tense": past,
         "plural_agreement": plural_agreement,
+        "canonical_frame_match": words == expected_tokens,
     }
 
 

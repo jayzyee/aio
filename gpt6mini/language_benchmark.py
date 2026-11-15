@@ -185,9 +185,9 @@ def run(include_qwen: bool = False) -> dict[str, Any]:
         },
         "interpretation": (
             "These automatic checks test only this small grammar's explicit "
-            "features and required words. They do not measure naturalness, "
-            "conversation quality, or general intelligence. Human fluency "
-            "ratings are still required."
+            "features, required words, and exact canonical frame sequence. "
+            "They do not measure naturalness, conversation quality, or general "
+            "intelligence. Human fluency ratings are still required."
         ),
     }
 

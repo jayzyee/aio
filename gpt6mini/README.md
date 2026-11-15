@@ -65,6 +65,24 @@ inspection:
 python3 gpt6mini/benchmark.py
 ```
 
+## Aio-L0 language experiment
+
+`language_engine.py` is a separate, inspectable experiment in generating
+sentences from structured meaning frames. It currently uses a hand-specified
+English grammar and a small lexicon; it is not a trained language model.
+Run its 16-frame composition benchmark with:
+
+```sh
+python3 gpt6mini/language_benchmark.py
+python3 -m unittest gpt6mini.tests.test_language_engine -v
+```
+
+The structural score now requires the exact canonical frame sequence as well
+as the individual operator checks, so missing auxiliaries, misplaced negation,
+and extra words cannot pass by merely containing the required anchors. This
+measures only the prototype grammar's controlled cases—not human-rated
+fluency, open-domain conversation, or general intelligence.
+
 To compare the same questions with a small pretrained model running locally,
 install the optional CPU dependencies and request Qwen:
 
