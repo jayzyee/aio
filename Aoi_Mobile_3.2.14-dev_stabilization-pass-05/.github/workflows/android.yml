@@ -1,0 +1,70 @@
+# Experimental cloud debug build. This creates an installable APK for device testing;
+# it is not a signed Play Store release.
+name: Android APK
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+env:
+  GODOT_VERSION: "4.8-beta1"
+  GODOT_ANDROID_KEYSTORE_DEBUG_USER: androiddebugkey
+  GODOT_ANDROID_KEYSTORE_DEBUG_PASSWORD: android
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    container:
+      image: barichello/godot-ci:4.7.2
+    env:
+      GODOT_ANDROID_KEYSTORE_DEBUG_PATH: ${{ github.workspace }}/debug.keystore
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install pinned Godot engine and export templates
+        run: |
+          set -euo pipefail
+          godot_dir="$RUNNER_TEMP/godot-$GODOT_VERSION"
+          template_dir="$HOME/.local/share/godot/export_templates/4.8.beta1"
+          mkdir -p "$godot_dir" "$template_dir"
+
+          engine_zip="$RUNNER_TEMP/Godot_v4.8-beta1_linux.x86_64.zip"
+          curl --fail --location --retry 3 --retry-delay 2 \
+            "https://github.com/godotengine/godot-builds/releases/download/4.8-beta1/Godot_v4.8-beta1_linux.x86_64.zip" \
+            -o "$engine_zip"
+          echo "199b2d6a0daa3a74a697356f31c33347f997f65258ba7dd07ca8c1110757927d  $engine_zip" | sha256sum --check
+          unzip -o -q "$engine_zip" -d "$godot_dir"
+          godot_bin="$godot_dir/Godot_v4.8-beta1_linux.x86_64"
+          chmod +x "$godot_bin"
+          echo "GODOT_BIN=$godot_bin" >> "$GITHUB_ENV"
+
+          templates="$RUNNER_TEMP/Godot_v4.8-beta1_export_templates.tpz"
+          curl --fail --location --retry 3 --retry-delay 2 \
+            "https://github.com/godotengine/godot-builds/releases/download/4.8-beta1/Godot_v4.8-beta1_export_templates.tpz" \
+            -o "$templates"
+          echo "74bc5e7396ec1a811070849da6931cc99b01b0861a659c22b97e8adecf96d71a  $templates" | sha256sum --check
+          unzip -o -q "$templates" -d "$template_dir"
+          mv "$template_dir/templates"/* "$template_dir"/
+          rmdir "$template_dir/templates"
+          "$godot_bin" --version
+      - name: Prepare debug signing key
+        run: |
+          keytool -genkeypair -v \
+            -keystore "$GODOT_ANDROID_KEYSTORE_DEBUG_PATH" \
+            -storepass "$GODOT_ANDROID_KEYSTORE_DEBUG_PASSWORD" \
+            -alias "$GODOT_ANDROID_KEYSTORE_DEBUG_USER" \
+            -keypass "$GODOT_ANDROID_KEYSTORE_DEBUG_PASSWORD" \
+            -keyalg RSA -keysize 2048 -validity 10000 \
+            -dname "CN=Android Debug,O=Aoi,C=MW"
+      - name: Import project assets
+        run: "$GODOT_BIN" --headless --path . --editor --import
+      - name: Export debug APK
+        run: |
+          mkdir -p build
+          "$GODOT_BIN" --headless --path . --export-debug "Android" build/aoi-mobile.apk
+          test -s build/aoi-mobile.apk
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aoi-mobile-debug-apk
+          path: build/aoi-mobile.apk
+          if-no-files-found: error
+          retention-days: 7

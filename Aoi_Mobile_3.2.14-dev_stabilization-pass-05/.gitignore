@@ -1,0 +1,8 @@
+.godot/
+*.import
+user://
+*.apk
+*.aab
+__pycache__/
+*.py[cod]
+.venv/

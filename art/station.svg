@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1600" viewBox="0 0 900 1600">
+  <defs>
+    <linearGradient id="sky" x2="0" y2="1">
+      <stop stop-color="#293b68"/>
+      <stop offset=".52" stop-color="#bc7890"/>
+      <stop offset="1" stop-color="#f0bd91"/>
+    </linearGradient>
+    <linearGradient id="glass" x2="0" y2="1">
+      <stop stop-color="#172647" stop-opacity=".1"/>
+      <stop offset="1" stop-color="#111b34" stop-opacity=".8"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="1600" fill="url(#sky)"/>
+  <circle cx="680" cy="370" r="95" fill="#ffe2b0" opacity=".8"/>
+  <path d="M0 780h900v820H0z" fill="#18253e"/>
+  <path d="M0 855h900v33H0zM0 1100h900v22H0z" fill="#b4a1a1" opacity=".5"/>
+  <path d="M64 0h38v1140H64zm214 0h25v1140h-25zm250 0h38v1140h-38zm248 0h25v1140h-25z" fill="#34415d"/>
+  <path d="M0 0h900v1140H0z" fill="url(#glass)"/>
+  <path d="M0 1160h900v440H0z" fill="#111a2b"/>
+  <path d="M0 1335h900v21H0z" fill="#e1ae76" opacity=".6"/>
+  <g fill="#ffd58d">
+    <rect x="95" y="920" width="12" height="48" rx="6"/><rect x="340" y="920" width="12" height="48" rx="6"/>
+    <rect x="595" y="920" width="12" height="48" rx="6"/><rect x="798" y="920" width="12" height="48" rx="6"/>
+  </g>
+  <path d="M280 1600 450 930l170 670z" fill="#ffd099" opacity=".08"/>
+</svg>

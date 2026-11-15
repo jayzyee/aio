@@ -1,0 +1,9 @@
+== logic (SSE, markdown, catalog, storage)
+UNIT_SUMMARY 26/26 passed
+== client vs mock provider (streaming, fallback, errors, cancel)
+E2E_LLM_SUMMARY 17/17 passed
+== whole phone UI vs mock provider
+UI_SUMMARY 14/14 passed
+== touch swipes scroll the page
+SCROLL_SUMMARY 6/6 passed
+ALL MOBILE TESTS PASSED

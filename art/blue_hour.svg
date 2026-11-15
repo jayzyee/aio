@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1600" viewBox="0 0 900 1600">
+  <defs>
+    <linearGradient id="night" x2="0" y2="1">
+      <stop stop-color="#17274d"/>
+      <stop offset=".58" stop-color="#485f89"/>
+      <stop offset="1" stop-color="#e29a91"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="1600" fill="url(#night)"/>
+  <g fill="#fff1d2" opacity=".8">
+    <circle cx="135" cy="155" r="4"/><circle cx="315" cy="245" r="3"/><circle cx="580" cy="145" r="4"/>
+    <circle cx="785" cy="300" r="3"/><circle cx="695" cy="520" r="4"/><circle cx="225" cy="480" r="3"/>
+  </g>
+  <circle cx="678" cy="350" r="75" fill="#fff0ca" opacity=".88"/>
+  <path d="M0 990 170 790l145 170 182-260 190 265 110-145 103 110v670H0z" fill="#253653"/>
+  <path d="M0 1110h900v490H0z" fill="#17243a"/>
+  <g fill="#ffd28c" opacity=".85">
+    <rect x="105" y="1220" width="28" height="44" rx="4"/><rect x="185" y="1220" width="28" height="44" rx="4"/>
+    <rect x="575" y="1170" width="26" height="40" rx="4"/><rect x="670" y="1170" width="26" height="40" rx="4"/>
+    <rect x="770" y="1235" width="25" height="42" rx="4"/>
+  </g>
+  <path d="M0 1430q210-65 450 0t450 0v170H0z" fill="#304866"/>
+</svg>

@@ -1,0 +1,51 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Aoi Mobile"
+config/description="A project-agnostic AI workspace for chat, knowledge, development and agent workflows."
+config/version="3.2.14-dev"
+run/main_scene="res://scenes/Main.tscn"
+config/features=PackedStringArray("4.8", "GL Compatibility")
+config/icon="res://icon.svg"
+
+[autoload]
+
+Store="*res://scripts/core/Store.gd"
+JobRunner="*res://scripts/core/JobRunner.gd"
+LLM="*res://scripts/core/LLM.gd"
+ToolRunner="*res://scripts/core/ToolRunner.gd"
+AgentFlow="*res://scripts/core/AgentFlow.gd"
+GodotSandbox="*res://scripts/core/GodotSandbox.gd"
+
+[display]
+
+window/size/viewport_width=720
+window/size/viewport_height=1280
+window/size/mode=3
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+window/handheld/orientation=1
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/aoi_studio/plugin.cfg", "res://addons/aoi_android_actions/plugin.cfg")
+
+[gui]
+
+common/drop_mouse_on_gui_input_disabled=true
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true
+environment/defaults/default_clear_color=Color(0.0902, 0.0941, 0.1059, 1)

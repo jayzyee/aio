@@ -1,0 +1,3 @@
+# Optional CPU reference-model benchmark; the Aio-0 core has no dependencies.
+torch>=2.6
+transformers>=4.51

@@ -1,0 +1,20 @@
+{
+  "books": [
+    {
+      "id": "glasshouse-field-notes",
+      "title": "Field Notes from the Glasshouse",
+      "sections": [
+        {
+          "id": "west-and-east-trays",
+          "title": "The West and East Trays",
+          "text": "On Monday morning, the west tray and the east tray were watered. By Wednesday afternoon, the west tray's soil was dry and its leaves had wilted. The east tray was shaded for part of the day, but its soil remained moist and its leaves stayed upright. After the west tray was watered on Wednesday evening, its leaves were upright again on Thursday morning. These observations show what happened in the two trays; they do not describe a controlled experiment."
+        },
+        {
+          "id": "reading-observations",
+          "title": "Reading an Observation",
+          "text": "An observation records what was noticed. An inference is an explanation drawn from observations. A pattern can make an explanation plausible without proving it: other differences between cases may also matter. A careful reader should separate what the notes directly say from what the reader concludes."
+        }
+      ]
+    }
+  ]
+}

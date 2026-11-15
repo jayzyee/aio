@@ -1,0 +1,15 @@
+# Godot editor/import caches and generated Android build intermediates
+**/.godot/
+**/*.import
+**/android/build/
+**/.gradle/
+
+# Python local environments and bytecode
+**/__pycache__/
+**/*.py[cod]
+**/.venv/
+
+# Packaged application binaries are published as release assets
+**/*.apk
+**/*.aab
+**/*.idsig

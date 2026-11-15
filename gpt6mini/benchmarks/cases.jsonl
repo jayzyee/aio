@@ -1,0 +1,6 @@
+{"question":"Why did the west tray wilt?","expected_answerable":true,"expected_section":"west-and-east-trays","expected_terms":["dry","wilt","water"]}
+{"question":"What does the east tray's condition tell us about the role of moisture?","expected_answerable":true,"expected_section":"west-and-east-trays","expected_terms":["moist","upright"]}
+{"question":"Do these observations prove that dry soil was the only cause?","expected_answerable":true,"expected_section":"west-and-east-trays","expected_terms":["controlled","prove"]}
+{"question":"What should a careful reader separate?","expected_answerable":true,"expected_section":"reading-observations","expected_terms":["observation","inference"]}
+{"question":"What is the capital city of France?","expected_answerable":false,"expected_section":"","expected_terms":[]}
+{"question":"Why is a pattern not always proof of its explanation?","expected_answerable":true,"expected_section":"reading-observations","expected_terms":["plausible","proving"]}

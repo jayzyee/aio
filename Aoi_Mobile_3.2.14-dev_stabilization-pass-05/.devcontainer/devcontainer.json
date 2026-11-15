@@ -1,0 +1,23 @@
+{
+  "name": "Aoi Cloud Linux Workspace",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "forwardPorts": [8765],
+  "portsAttributes": {
+    "8765": {
+      "label": "Aoi secure workspace bridge",
+      "onAutoForward": "notify"
+    }
+  },
+  "postCreateCommand": "bash companion/codespaces_setup.sh",
+  "postStartCommand": "bash companion/codespaces_start.sh",
+  "postAttachCommand": "bash companion/codespaces_publish_port.sh",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash"
+      }
+    }
+  }
+}

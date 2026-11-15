@@ -1,0 +1,42 @@
+{
+  "start": "station",
+  "nodes": [
+    {
+      "id": "station",
+      "character": "Mira",
+      "text": "The last train sighs into the station. Beyond the glass, the whole city is turning blue with evening.",
+      "background": "res://art/station.svg",
+      "portrait": "res://art/mira.svg",
+      "choices": [
+        { "text": "Ask Mira why she stayed.", "next": "stayed" },
+        { "text": "Offer to walk her home.", "next": "walk_home" }
+      ]
+    },
+    {
+      "id": "stayed",
+      "character": "Mira",
+      "text": "“I wanted to see the first stars,” she says. A small smile warms her face. “I was hoping you might still be here, too.”",
+      "background": "res://art/station.svg",
+      "portrait": "res://art/mira.svg",
+      "next": "ending"
+    },
+    {
+      "id": "walk_home",
+      "character": "Mira",
+      "text": "“Only if we take the long way,” Mira says. She steps out beneath the streetlights, leaving the station behind.",
+      "background": "res://art/blue_hour.svg",
+      "portrait": "res://art/mira.svg",
+      "next": "ending"
+    },
+    {
+      "id": "ending",
+      "character": "Narration",
+      "text": "Side by side, you watch the first stars appear. The night is just beginning.",
+      "background": "res://art/blue_hour.svg",
+      "portrait": "",
+      "choices": [
+        { "text": "Play again from the beginning", "next": "station" }
+      ]
+    }
+  ]
+}

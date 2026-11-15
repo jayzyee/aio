@@ -1,0 +1,11 @@
+Godot Engine v4.8.beta1.official.4d10419ca - https://godotengine.org
+
+SCROLL_S0_chat_follows_when_reader_is_at_bottom PASS
+SCROLL_S0A_chat_preserves_position_when_reader_is_older PASS
+SCROLL_S1_swipe_on_reply_text_scrolls_chat FAIL :: moved=0
+SCROLL_S2_no_text_gets_selected PASS
+SCROLL_S3_swipe_on_user_bubble_scrolls_chat FAIL :: moved=0
+SCROLL_S4_swipe_on_card_scrolls_setup FAIL :: moved=0
+SCROLL_S5_swipe_starting_on_a_button_scrolls_setup FAIL :: moved=0
+SCROLL_S6_swipe_on_project_page_scrolls FAIL :: moved=0
+SCROLL_SUMMARY 3/8 passed

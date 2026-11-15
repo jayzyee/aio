@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "project_name": "Generic Task Fixture",
+  "tasks": [
+    {
+      "id": "count-up",
+      "name": "Count up",
+      "description": "A deterministic headless task used to verify progress, pause, resume and artifacts.",
+      "runtime": "gdscript_steps",
+      "script": "tasks/counter_task.gd",
+      "parameters": [
+        {"name": "steps", "type": "int", "default": 1000, "min": 1, "max": 10000}
+      ],
+      "limits": {"max_runtime_seconds": 120}
+    },
+    {
+      "id": "python-report",
+      "name": "Python report",
+      "description": "Illustrates a project-declared task whose runtime is not installed on this device.",
+      "runtime": "python_companion",
+      "script": "scripts/report.py"
+    }
+  ]
+}

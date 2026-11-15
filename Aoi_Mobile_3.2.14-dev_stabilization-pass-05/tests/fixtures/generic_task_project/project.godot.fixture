@@ -1,0 +1,5 @@
+; Generic test fixture only. It is not bundled as a product-specific sample.
+config_version=5
+
+[application]
+config/name="Generic Task Fixture"
